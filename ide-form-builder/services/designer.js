@@ -15,7 +15,7 @@ exports.getEditor = function() {
 			"factory":"frame",
 			"region":"center-top",
 			"label":"Designer",
-			"link":"../ide-form-builder/designer/designer.html",
+			"link":"../ide-form-builder/designer.html",
 			"contentTypes":["application/json+form"]
 	};
 	return editor;
