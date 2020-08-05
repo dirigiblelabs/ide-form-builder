@@ -1,5 +1,5 @@
 (function() {
-  angular.module('app', ['builder', 'builder.components', 'validator.rules']).run([
+  angular.module('app', ['builder', 'builder.components', 'validator.rules', 'ngSanitize']).run([
     '$builder', function($builder) {
       $builder.registerComponent('sampleInput', {
         group: 'Composite',
