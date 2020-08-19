@@ -174,8 +174,10 @@
 	<script>
 		$(document).ready(function(){
 			var $ = jQuery;
-			$( "#accordion" ).accordion();
-			$('[data-toggle="popover"]').popover();   
+			setTimeout(function() {
+				$( "#accordion" ).accordion();
+				$('[data-toggle="popover"]').popover();
+			}, 1000);
 		});
     </script>
 	
