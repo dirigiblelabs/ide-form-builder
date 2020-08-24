@@ -106,7 +106,7 @@
 	
       load();
 
-      function saveContents(text) {
+      function saveContents(text, publish) {
         console.log('Save called...');
         if ($scope.file) {
           var xhr = new XMLHttpRequest();
@@ -114,6 +114,9 @@
           xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
               console.log('file saved: ' + $scope.file);
+              if (publish) {
+                setTimeout(function(){ publishFile(); }, 800);
+              }
             }
           };
           xhr.send(text);
@@ -130,9 +133,31 @@
         return JSON.stringify(description);
       }
 
+      function publishFile() {
+        console.log('Publish called...');
+        if ($scope.file) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '../../../../../../services/v4/ide/publisher/request' + $scope.file.substring(0,$scope.file.lastIndexOf('/')));
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+              console.log('publish request sent for file: ' + $scope.file);
+              messageHub.post({data: $scope.file}, 'workspace.file.published');
+            }
+          };
+          xhr.send("{}");
+        } else {
+          console.error('file parameter is not present in the request');
+        }
+      }
+
       $scope.save = function() {
         contents = prepareContents();
-        saveContents(contents);
+        saveContents(contents, false);
+      };
+
+      $scope.saveAndPublish = function() {
+        contents = prepareContents();
+        saveContents(contents, true);
       };
 	
       $scope.$watch(function() {
