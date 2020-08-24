@@ -66,6 +66,15 @@
         if (!description.metadata.feeds) {
           description.metadata.feeds = [];
         }
+        if (!description.metadata.styles) {
+          description.metadata.styles = [];
+        }
+        if (!description.metadata.scripts) {
+          description.metadata.scripts = [];
+        }
+        if (!description.metadata.handlers) {
+          description.metadata.handlers = [];
+        }
         $scope.components = description.form;
         $scope.metadata = description.metadata;
         $scope.defaultValue = {};
@@ -114,17 +123,21 @@
         }
       }
 
-      $scope.save = function() {
+      function prepareContents() {
         var description = {};
         description.metadata = $scope.metadata;
         description.form = $scope.form;
-        contents = JSON.stringify(description);
+        return JSON.stringify(description);
+      }
+
+      $scope.save = function() {
+        contents = prepareContents();
         saveContents(contents);
       };
 	
       $scope.$watch(function() {
-        var components = JSON.stringify($scope.components);
-        if (contents !== components) {
+        var current = prepareContents();
+        if (contents !== current) {
           messageHub.post({data: $scope.file}, 'editor.file.dirty');
         }
       });
