@@ -8,15 +8,14 @@
  * Contributors:
  *   SAP - initial API and implementation
  */
-exports.getEditor = function() {
-	var editor = {
-			"id":"designer",
-			"name":"Designer",
-			"factory":"frame",
-			"region":"center-top",
-			"label":"Designer",
-			"link":"../ide-form-builder/designer.html",
-			"contentTypes":["application/json+form"]
+exports.getEditor = function () {
+	return {
+		"id": "designer",
+		"name": "Designer",
+		"factory": "frame",
+		"region": "center-top",
+		"label": "Designer",
+		"link": "../ide-form-builder/designer.html",
+		"contentTypes": ["application/json+form"]
 	};
-	return editor;
 };

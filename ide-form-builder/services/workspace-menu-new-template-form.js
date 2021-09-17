@@ -8,12 +8,11 @@
  * Contributors:
  *   SAP - initial API and implementation
  */
-exports.getTemplate = function() {
-	var view = {
-			"name":"form",
-			"label":"Form Definition",
-			"extension":"form",
-			"data":'[]'
+exports.getTemplate = function () {
+	return {
+		"name": "form",
+		"label": "Form Definition",
+		"extension": "form",
+		"data": '[]'
 	};
-	return view;
 };
