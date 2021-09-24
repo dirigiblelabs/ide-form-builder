@@ -353,7 +353,7 @@
               The save event of the popover.
                */
               $event.preventDefault();
-              $validator.validate(scope).success(function() {
+              $validator.validate(scope).then(function() {
                 popover.isClickedSave = true;
                 return $(element).popover('hide');
               });
@@ -1094,14 +1094,14 @@
       if (component.template == null) {
         $http.get(component.templateUrl, {
           cache: $templateCache
-        }).success(function(template) {
+        }).then(function(template) {
           return component.template = template;
         });
       }
       if (component.popoverTemplate == null) {
         return $http.get(component.popoverTemplateUrl, {
           cache: $templateCache
-        }).success(function(template) {
+        }).then(function(template) {
           return component.popoverTemplate = template;
         });
       }
